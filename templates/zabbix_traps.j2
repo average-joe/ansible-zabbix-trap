@@ -1,0 +1,12 @@
+/var/log/trap/trap.log {
+    weekly
+    size {{ zabbix_trap_logrotate_size }}
+    compress
+    compressoptions -9
+    notifempty
+    dateext
+    dateformat -%Y%m%d
+    missingok
+    maxage 365
+    rotate {{ zabbix_trap_logrotate_number }}
+}

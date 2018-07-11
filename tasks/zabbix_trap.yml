@@ -1,0 +1,109 @@
+- name: Get a listing of current MIB files
+  shell: ls -1 /usr/share/snmp/mibs/
+  changed_when: False
+  register: mibs_on_remote
+
+- name: Copy Device MIB Files To Zabbix
+  copy:
+    src: "{{ item }}"
+    dest: /usr/share/snmp/mibs/
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob:
+    - files/mibs/*
+  notify:
+    - restart snmptrapd
+    - restart snmptt
+    - restart zabbix-server
+
+- name: Remove stale MIB files
+  file:
+    state: absent
+    path: "/usr/share/snmp/mibs/{{ item }}"
+  with_items: "{{ mibs_on_remote.stdout_lines }}"
+  when: item not in query('fileglob', 'files/mibs/*') | map('basename') | list
+  notify:
+    - restart snmptrapd
+    - restart snmptt
+    - restart zabbix-server
+
+- name: Make Log Directory
+  file:
+    path: "{{ zabbix_trap_log_directory }}"
+    state: directory
+    mode: 0755
+
+- name: Allow snmpd To Start (SELinux)
+  selinux_permissive:
+    name: snmpd_t
+    permissive: true
+
+- name: Copy snmptrapd.conf File
+  template:
+    src: snmptrapd.conf.j2
+    dest: /etc/snmp/snmptrapd.conf
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - restart snmptrapd
+
+- name: Enable snmptrapd
+  service:
+    name: snmptrapd
+    state: started
+    enabled: yes
+
+- name: Copy Additional snmptt Device Trap Files
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/snmp/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ zabbix_trap_snmptt_files }}"
+  notify:
+    - restart snmptt
+
+- name: Copy snmptt.ini File
+  template:
+    src: snmptt.ini.j2
+    dest: /etc/snmp/snmptt.ini
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart snmptt
+
+- name: Enable snmptt
+  service:
+    name: snmptt
+    state: started
+    enabled: yes
+
+- name: Copy snmp.conf File
+  copy:
+    src: snmp.conf
+    dest: /etc/snmp/
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart snmptrapd
+
+- name: Configure Trap Log Rotation Weekly
+  template:
+    src: zabbix_traps.j2
+    dest: /etc/logrotate.d/zabbix_traps
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Configure Zabbix Server To Process Traps
+  lineinfile:
+    path: /etc/zabbix/zabbix_server.conf
+    regexp: '^SNMPTrapperFile'
+    line: "'SNMPTrapperFile={{ zabbix_trap_log_file }}'"
+    state: present
+  notify: restart zabbix-server

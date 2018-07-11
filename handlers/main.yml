@@ -1,1 +1,14 @@
-main.yml
+- name: restart zabbix-server
+  service:
+    name: zabbix-server
+    state: restarted
+
+- name: restart snmptrapd
+  service:
+    name: snmptrapd
+    state: restarted
+
+- name: restart snmptt
+  service:
+    name: snmptt
+    state: restarted

@@ -1,0 +1,10 @@
+- name: Install Dependencies
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - net-snmp
+    - net-snmp-utils
+    - net-snmp-perl
+    - perl-Sys-Syslog
+    - snmptt

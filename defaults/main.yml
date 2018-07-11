@@ -1,1 +1,92 @@
-main.yml
+zabbix_trap_log_directory: /var/log/trap
+zabbix_trap_log_file: "{{ zabbix_trap_log_directory }}"/trap.log
+
+zabbix_trap_community: private
+
+zabbix_trap_snmptt_files:
+  - name: snmptt.conf
+
+zabbix_trap_logrotate_size: 40M
+zabbix_trap_logrotate_number: 10
+
+snmptt_mode: standalone
+snmptt_multiple_event: 1
+snmptt_dns_enable: 0
+snmptt_strip_domain: 0
+snmptt_resolve_value_ip_addresses: 0
+snmptt_net_snmp_perl_enable: 1
+snmptt_net_snmp_perl_cache_enable: 1
+snmptt_net_snmp_perl_best_guess: 0
+snmptt_translate_log_trap_oid: 2
+snmptt_translate_value_oids: 1
+snmptt_translate_enterprise_oid_format: 1
+snmptt_translate_trap_oid_format: 1
+snmptt_translate_varname_oid_format: 1
+snmptt_translate_integers: 1
+snmptt_mibs_environment: ALL
+snmptt_wildcard_expansion_separator: " "
+snmptt_allow_unsafe_regex: 0
+snmptt_remove_backslash_from_quotes: 0
+snmptt_dynamic_nodes: 0
+snmptt_description_mode: 0
+snmptt_description_clean: 1
+snmptt_threads_enable: 0
+snmptt_threads_max: 10
+snmptt_date_time_format: "%H:%M:%S %Y/%m/%d"
+snmptt_daemon_fork: 1
+snmptt_daemon_uid: snmptt
+snmptt_pid_file: /var/run/snmptt.pid
+snmptt_spool_directory: /var/spool/snmptt/
+snmptt_sleep: 5
+snmptt_use_trap_time: 1
+snmptt_keep_unlogged_traps: 1
+snmptt_duplicate_trap_window: 0
+snmptt_stdout_enable: 0
+snmptt_log_enable: 1
+snmptt_log_system_enable: 1
+snmptt_log_system_file: /var/log/snmptt/snmpttsystem.log
+snmptt_unknown_trap_log_enable: 0
+snmptt_unknown_trap_log_file: /var/log/snmptt/snmpttunknown.log
+snmptt_statistics_interval: 0
+snmptt_syslog_enable: 1
+snmptt_syslog_facility: local0
+snmptt_syslog_level: warning
+snmptt_syslog_system_enable: 1
+snmptt_syslog_system_facility: local0
+snmptt_syslog_system_level: warning
+snmptt_db_translate_enterprise: 0
+snmptt_db_unknown_trap_format: '$-*'
+snmptt_mysql_dbi_enable: 0
+snmptt_mysql_dbi_host: localhost
+snmptt_mysql_dbi_port: 3306
+snmptt_mysql_dbi_database: snmptt
+snmptt_mysql_dbi_table: snmptt
+snmptt_mysql_dbi_table_unknown: snmptt_unknown
+snmptt_mysql_dbi_username: snmpttuser
+snmptt_mysql_dbi_password: password
+snmptt_mysql_ping_on_insert: 1
+snmptt_mysql_ping_interval: 300
+snmptt_postgresql_dbi_enable: 0
+snmptt_postgresql_dbi_module: 0
+snmptt_postgresql_dbi_hostport_enable: 0
+snmptt_postgresql_dbi_host: localhost
+snmptt_postgresql_dbi_port: 5432
+snmptt_postgresql_dbi_database: snmptt
+snmptt_postgresql_dbi_table_unknown: snmptt_unknown
+snmptt_postgresql_dbi_table: snmptt
+snmptt_postgresql_dbi_username: snmpttuser
+snmptt_postgresql_dbi_password: password
+snmptt_postgresql_ping_on_insert: 1
+snmptt_postgresql_ping_interval: 300
+snmptt_dbd_odbc_enable: 0
+snmptt_dbd_odbc_dsn: snmptt
+snmptt_dbd_odbc_table: snmptt
+snmptt_dbd_odbc_table_unknown: snmptt_unknown
+snmptt_dbd_odbc_username: snmptt
+snmptt_dbd_odbc_password: password
+snmptt_dbd_odbc_ping_on_insert: 1
+snmptt_dbd_odbc_ping_interval: 300
+snmptt_exec_enable: 1
+snmptt_pre_exec_enable: 1
+snmptt_exec_escape: 1
+snmptt_DEBUGGING: 0

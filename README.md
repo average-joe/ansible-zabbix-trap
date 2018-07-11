@@ -22,7 +22,7 @@ This role will work on the following operating system:
 
 ## Zabbix Versions
 
-The foloowing list of supported operating systems for Zabbix releases
+The following list of supported operating systems for Zabbix releases
 
 ### Zabbix 3.4
 

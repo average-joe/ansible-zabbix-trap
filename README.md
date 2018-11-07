@@ -24,6 +24,11 @@ This role will work on the following operating system:
 
 The following list of supported operating systems for Zabbix releases
 
+### Zabbix 4.0
+
+* RedHat 7.x
+* CentOS 7.x
+
 ### Zabbix 3.4
 
 * RedHat 7.x
@@ -44,7 +49,8 @@ This role does not install a Zabbix Server and presumes an already operational z
 * `zabbix_trap_community`: Private snmp trap community name 
 * `zabbix_trap_snmptt_files`: List of snmptt trap files snmptt will use to process traps
 * `zabbix_trap_logrotate_size`: Max log file size before roetating file
-* `zabbix_trap_logrotate_number`: Max number of archived log files to store  
+* `zabbix_trap_logrotate_number`: Max number of archived log files to store 
+* `selinux_allow_snmpd_to_start`: If SELinux Enforcing, allow snmpd to start
 
 # Dependencies
 

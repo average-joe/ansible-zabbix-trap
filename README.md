@@ -12,6 +12,12 @@ Table of Contents
 - [License](#license)
 - [Author Information](#author-information)
 
+# Overview
+
+Build Status:
+
+[![Build Status](https://travis-ci.com/average-joe/ansible-zabbix-trap.svg?branch=master)](https://travis-ci.org/average-joe/ansible-zabbix-trap)
+
 # Requirements
 
 ## Operating systems

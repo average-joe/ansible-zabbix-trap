@@ -24,7 +24,8 @@ Build Status:
 
 This role will work on the following operating system:
 
- * Red Hat
+ * RedHat
+ * CentOS
 
 ## Zabbix Versions
 

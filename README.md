@@ -3,6 +3,7 @@ Table of Contents
 - [Requirements](#requirements)
   * [Operating systems](#operating-systems)
   * [Zabbix Versions](#zabbix-versions)
+    + [Zabbix 4.0](#zabbix-40)
     + [Zabbix 3.4](#zabbix-34)
   * [Installation](#installation)
   * [Main Variables](#main-variables)

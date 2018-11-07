@@ -9,6 +9,8 @@ zabbix_trap_snmptt_files:
 zabbix_trap_logrotate_size: 40M
 zabbix_trap_logrotate_number: 10
 
+selinux_allow_snmpd_to_start: False
+
 snmptt_mode: standalone
 snmptt_multiple_event: 1
 snmptt_dns_enable: 0

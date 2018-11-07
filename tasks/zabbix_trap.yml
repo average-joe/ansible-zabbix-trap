@@ -3,7 +3,7 @@
   changed_when: False
   register: mibs_on_remote
 
-- name: Copy Device MIB Files To Zabbix
+- name: Copy Device MIB Files
   copy:
     src: "{{ item }}"
     dest: /usr/share/snmp/mibs/
@@ -38,6 +38,8 @@
   selinux_permissive:
     name: snmpd_t
     permissive: true
+  when:
+    - selinux_allow_snmpd_to_start
 
 - name: Copy snmptrapd.conf File
   template:
@@ -62,7 +64,7 @@
     owner: root
     group: root
     mode: 0644
-  with_items: "{{ zabbix_trap_snmptt_files }}"
+  with_items: "{{ zabbix_trap_snmptt_files | default(omit) }}"
   notify:
     - restart snmptt
 

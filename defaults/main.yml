@@ -4,7 +4,7 @@ zabbix_trap_log_file: "{{ zabbix_trap_log_directory }}"/trap.log
 zabbix_trap_community: private
 
 zabbix_trap_snmptt_files:
-  - name: snmptt.conf
+  - snmptt.conf
 
 zabbix_trap_logrotate_size: 40M
 zabbix_trap_logrotate_number: 10

@@ -28,12 +28,6 @@
     - restart snmptt
     - restart zabbix-server
 
-- name: Make Log Directory
-  file:
-    path: "{{ zabbix_trap_log_directory }}"
-    state: directory
-    mode: 0755
-
 - name: Allow snmpd To Start (SELinux)
   selinux_permissive:
     name: snmpd_t
@@ -93,6 +87,12 @@
     mode: 0644
   notify:
     - restart snmptrapd
+
+- name: Make Log Directory
+  file:
+    path: "{{ zabbix_trap_log_directory }}"
+    state: directory
+    mode: 0755
 
 - name: Configure Trap Log Rotation Weekly
   template:
